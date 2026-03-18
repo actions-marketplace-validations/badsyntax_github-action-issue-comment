@@ -33,7 +33,7 @@ runs:
   using: 'composite'
   steps:
     - name: Generate Template Comment Id
-      uses: actions/github-script@v6
+      uses: actions/github-script@v8
       id: template-comment-id
       with:
         script: |
@@ -54,7 +54,7 @@ runs:
             "id": "${{ steps.template-comment-id.outputs.template-comment-id }}"
           }
 
-    - uses: actions/github-script@v6
+    - uses: actions/github-script@v8
       name: Render Comment Body
       if: inputs.action != 'delete' && inputs.body != ''
       id: render-body
@@ -75,7 +75,7 @@ runs:
         token: ${{ inputs.token }}
 
     - name: Delete Comment
-      uses: actions/github-script@v6
+      uses: actions/github-script@v8
       if: (inputs.action == 'delete' || inputs.action == 'create-clean') && steps.find-comment.outputs.comment-id != ''
       with:
         script: |
